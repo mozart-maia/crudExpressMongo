@@ -3,7 +3,11 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const app = express()
 
-app.set('view engine','ejs')
+app.set('view engine','ejs') //engine para visualização dinamica
+
+app.use(express.static('public')) //para indicar ao express a pasta com arquivo JS
+
+app.use(bodyParser.json()) //para que o servidor consiga ler dados JSON
 
 //conexão com o banco
 var db
@@ -37,4 +41,37 @@ app.post('/quotes', (req,res)=>{
         console.log('saved to database')
         res.redirect('/')
     })
+})
+
+app.put('/quotes', (req, res) =>{
+    db.collection('quotes').findOneAndUpdate(
+        {
+            name: "Yoda"//query (busca pelo valor na collection cujo nome seja Yoda)
+        },
+        {
+            $set: {
+                name: req.body.name, //update (indica o que fazer com o valor,
+                quote: req.body.quote //aqui $set é mudar para o que foi passado na requisição)
+            }
+        }, 
+        {
+            sort: {_id:-1}, //options(aqui usa o sort e escolhe a última citação do nome Yoda)
+            upsert: true //upsert cria uma citação no caso de não haver citação de Yoda
+        },
+        (err, result) => { //callback
+            if (err) return res.send(err)
+            res.send(result)
+        } 
+    )
+})
+
+app.delete('/quotes', (req, res) =>{
+    db.collection('quotes').findOneAndDelete(
+        {
+            name: req.body.name //query
+        },
+            (err, result) => {
+                if (err) return res.send(500, err)
+                res.send({message: 'A darth vader quote got deleted'})
+            })
 })
