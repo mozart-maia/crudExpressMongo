@@ -72,6 +72,6 @@ app.delete('/quotes', (req, res) =>{
         },
             (err, result) => {
                 if (err) return res.send(500, err)
-                res.send({message: 'A darth vader quote got deleted'})
+                res.send({message: 'A quote got deleted'})
             })
 })

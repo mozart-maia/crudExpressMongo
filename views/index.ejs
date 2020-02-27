@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    /* #all {
+      margin: auto;
+    } */
+  </style>
   <title>MY APP</title>
 </head>
+
 <body>
-  Save your quotes here!
+  <div id="all" style="margin: auto;width: 90%;margin-top: 4%;">
+  <h3>Save your quotes here!</h3>
 
   <ul class="quotes">
   <% for(var i=0; i<quotes.length; i++) {%>
@@ -19,17 +27,23 @@
   <form action="/quotes" method="POST">
     <input type="text" placeholder="name" name="name">
     <input type="text" placeholder="quote" name="quote">
-    <button type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit">Submit</button>
   </form>
+  <hr>
   <div>
     <h2>Replace last quote written by master yoda with a quote from darth vader</h2>
     <button id="update">Darth Vader invades!</button>
   </div>
-  <div>
-    <h2>Delete Darth Vader first quote</h2>
-    <button id="delete">Delete first Darth Vader Quote</button>
+  <div class="delname"> 
+      <h3>Selecione o nome da citação que você quer excluir</h3>
+      <input type="text" placeholder="name quote to delete" id="delinput" oninput="inputChange()" class="delvalue" value="">
+      <button class="btn btn-danger" type="submit" id="delete">Delete</button>
   </div>
+ </div>
 
   <script src="main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
