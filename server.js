@@ -46,7 +46,7 @@ app.post('/quotes', (req,res)=>{
 app.put('/quotes', (req, res) =>{
     db.collection('quotes').findOneAndUpdate(
         {
-            name: "Yoda"//query (busca pelo valor na collection cujo nome seja Yoda)
+            name: "Robson"//query (busca pelo valor na collection cujo nome seja Yoda)
         },
         {
             $set: {
@@ -68,7 +68,7 @@ app.put('/quotes', (req, res) =>{
 app.delete('/quotes', (req, res) =>{
     db.collection('quotes').findOneAndDelete(
         {
-            name: req.body.name //query
+            name: req.body.name //query comparando o que foi passado na requisição da fetch com algo que esteja em quotes[].name
         },
             (err, result) => {
                 if (err) return res.send(500, err)

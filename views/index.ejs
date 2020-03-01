@@ -20,6 +20,7 @@
     <li class="quote">
       <span>Name: <%= quotes[i].name %> / </span>
       <span>Quote: <%= quotes[i].quote %></span>
+      <span><input type="radio" name="radiobutton" value="<%= quotes[i].name %>" onclick="displayRadioValue()"></span>
     </li>
   <% } %>
   </ul>
@@ -30,14 +31,20 @@
     <button class="btn btn-primary" type="submit">Submit</button>
   </form>
   <hr>
-  <div>
-    <h2>Replace last quote written by master yoda with a quote from darth vader</h2>
-    <button id="update">Darth Vader invades!</button>
-  </div>
   <div class="delname"> 
       <h3>Selecione o nome da citação que você quer excluir</h3>
       <input type="text" placeholder="name quote to delete" id="delinput" oninput="inputChange()" class="delvalue" value="">
       <button class="btn btn-danger" type="submit" id="delete">Delete</button>
+  </div>
+  <hr>
+  <div>
+    <h2>Selecione a citação que você deseja editar e clique em update após edita-la</h2>
+    <!-- <form action="/update" class="update" method="PUT"> -->
+      <input type="text" readonly id="staticName" >
+      <input type="text" placeholder="name" name="pname" oninput="inputChangeUpName()" id="upnameinput">
+      <input type="text" placeholder="quote" name="pquote" oninput="inputChangeUpQuote()" id="upquoteinput">
+      <button type="button" type="submit" class="btn btn-info" id="update">Update</button>
+    <!-- </form> -->
   </div>
  </div>
 

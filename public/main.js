@@ -2,18 +2,46 @@ var update = document.getElementById('update')
 var del = document.getElementById('delete')
 var dname = ""
 
+var upname = ""
+var updatename = ""
+var updatequote = ""
+
 function inputChange () {
     dname = document.getElementById('delinput').value
 }
 
+function inputChangeUpName () {
+    updatename = document.getElementById('upnameinput').value
+}
+
+function inputChangeUpQuote () {
+    updatequote = document.getElementById('upquoteinput').value
+}
+
+function displayRadioValue() { 
+    var rb = document.getElementsByName('radiobutton')
+      
+    for(i = 0; i < rb.length; i++) {           
+        if(rb[i].type=="radio") {           
+            if(rb[i].checked){                 
+               upname = rb[i].value
+               let staticinput = document.getElementById("staticName")
+               staticinput.value = upname
+               let anotherinput = document.getElementById("delinput")
+               anotherinput.value = upname
+               inputChange()
+            }
+        } 
+    }     
+}
 
 update.addEventListener('click', function (){
     fetch('quotes', {
-        method: 'put',
+        method: 'put',  //constroi uma requisição put para ser enviado ao express
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          'name': 'Darth Vader',
-          'quote': 'I find your lack of faith disturbing.'
+          'name': updatename,
+          'quote': updatequote
         })
       })
       .then(res => {
@@ -28,11 +56,11 @@ update.addEventListener('click', function (){
 
 
 del.addEventListener('click', function(){
-    fetch('quotes', {  //procura por algum elemento com id ou classe delvalue
-        method: 'delete', //aqui começa a criar uma requisição ocm o metodo
+    fetch('quotes', {  //procura por algum elemento com id ou classe quotes
+        method: 'delete', //aqui começa a criar uma requisição com o metodo
         headers: {'Content-Type': 'application/json'}, //o cabeçalho da requisição
         body: JSON.stringify({ //colocar o que pegar do body em formato json para ser incluído na coleção
-            'name': dname//tudo que tiver name correspondendo a Darth Vader ele pega
+            'name': dname  //tudo que tiver name correspondendo a dname ele pega
         })
     })
     .then(res =>{  
