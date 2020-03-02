@@ -46,7 +46,7 @@ app.post('/quotes', (req,res)=>{
 app.put('/quotes', (req, res) =>{
     db.collection('quotes').findOneAndUpdate(
         {
-            name: "Robson"//query (busca pelo valor na collection cujo nome seja Yoda)
+            name: req.body.update//query (busca pelo valor na collection cujo nome seja Yoda)
         },
         {
             $set: {

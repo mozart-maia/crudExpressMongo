@@ -41,7 +41,8 @@ update.addEventListener('click', function (){
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
           'name': updatename,
-          'quote': updatequote
+          'quote': updatequote,
+          'update': upname
         })
       })
       .then(res => {
