@@ -9,9 +9,9 @@ app.use(express.static('public')) //para indicar ao express a pasta com arquivo 
 
 app.use(bodyParser.json()) //para que o servidor consiga ler dados JSON
 
-//conexão com o banco
+//conexão com o banco. mude o link privado para o da sua conta no MONGO
 var db
-MongoClient.connect('mongodb+srv://admin:abcd1234@cluster0-nxjti.mongodb.net/test?retryWrites=true&w=majority', (err,client) =>{
+MongoClient.connect('LINK PRIVADO PARA CONEXÃO COM MONGO', (err,client) =>{
     if (err) return console.log(err)
     db = client.db('star-wars-quotes')
     app.listen(3000, ()=> {
